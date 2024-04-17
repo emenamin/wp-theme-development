@@ -1,0 +1,21 @@
+/**
+ * Display reading time.
+ */
+function tutorial_reading_time() {
+    $content = get_the_content( null, false, get_the_ID() );
+    $content = strip_shortcodes( $content );
+    $content = wp_strip_all_tags( $content );
+
+    $word_count = count( preg_split( '/\s+/', $content ) );
+
+    $wpm  = 161;
+    $time = ceil( $word_count / $wpm );
+    $time = max( 1, $time );
+
+    $read_time = sprintf(
+        /* translators: %s: Number of minutes. */
+        __( '%s min read', 'tutorial' ),
+        $time
+    );
+    echo esc_html( $read_time );
+}
