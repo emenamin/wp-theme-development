@@ -1,0 +1,10 @@
+/**
+ * Display publish date.
+ */
+function tutorial_publish_date() {
+    echo sprintf(
+        /* translators: %s: time */
+        esc_html__( 'Published %s ago', 'tutorial' ),
+        esc_html( human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) )
+    );
+}
